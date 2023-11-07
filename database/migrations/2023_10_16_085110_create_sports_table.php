@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('sports', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('description');
-            $table->integer('annee_ajout');
-            $table->integer('nb_disciplines');
-            $table->integer('nb_epreuves');
-            $table->datetime('date_debut');
-            $table->datetime('date_fin');
+            $table->string('nom')->nullable(true);
+            $table->string('description')->nullable(true);
+            $table->integer('annee_ajout')->nullable(true);
+            $table->integer('nb_disciplines')->nullable(true);
+            $table->integer('nb_epreuves')->nullable(true);
+            $table->datetime('date_debut')->nullable(true);
+            $table->datetime('date_fin')->nullable(true);
             $table->timestamps();
         });
     }
