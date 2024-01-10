@@ -1,18 +1,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>Liste des sports</title>
-    <style>
-        table, td {
-            border: 1px solid;
-            border-collapse: collapse;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        tr, td, body {
-            text-align: center;
-            padding: 5px;
-        }
-    </style>
+    @vite(['resources/css/app.css'])
 </head>
 <body>
     <h2>La liste des tâches</h2>

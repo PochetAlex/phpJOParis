@@ -12,6 +12,7 @@
 <div>
     <h1>Accueil</h1>
     <h2>Gestion des sports</h2>
+    <img class="img-land" src="{{Vite::asset('resources/images/alistar.png')}}" alt="Alistar meumeu" >
 </div>
 </body>
 </html>
