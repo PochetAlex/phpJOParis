@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SportController;
 use App\Models\Sport;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () { //pour avoir une page d'accueil
     $sports = Sport::all();
     return view('sport/sport', ['sports' => $sports]);
 });
 
-Route::get('sport', [App\Http\Controllers\SportController::class,'index']) -> name('sport.index');
+Route::get('sport', [SportController::class,'index']) -> name('sport.index');

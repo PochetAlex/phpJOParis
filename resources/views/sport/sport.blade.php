@@ -1,4 +1,4 @@
-<html>
+<html lang="fr">
 <head>
     <title>Liste des sports</title>
     <style>
@@ -34,16 +34,15 @@
             <tbody>
             @foreach($sports as $sport)
                 <tr>
-                    <td>{{$sport['id']}}</td>
-                    <td>{{$sport['nom']}}</td>
-                    <td>{{$sport['description']}}</td>
-                    <td>{{$sport['annee_ajout']}}</td>
-                    <td>{{$sport['nb_disciplines']}}</td>
-                    <td>{{$sport['nb_epreuves']}}</td>
-                    <td>{{$sport['date_debut']}}</td>
-                    <td>{{$sport['date_fin']}}</td>
+                    <td>{{$sport->id}}</td>
+                    <td>{{$sport->nom}}</td>
+                    <td>{{$sport->description}}</td>
+                    <td>{{$sport->annee_ajout}}</td>
+                    <td>{{$sport->nb_disciplines}}</td>
+                    <td>{{$sport->nb_epreuves}}</td>
+                    <td>{{$sport->date_debut}}</td>
+                    <td>{{$sport->date_fin}}</td>
                 </tr>
-
             @endforeach
             </tbody>
         </table>
