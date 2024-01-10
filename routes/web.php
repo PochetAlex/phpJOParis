@@ -22,4 +22,5 @@ Route::get('/contacts', [HomeController::class, 'contacts'])->name('contacts');
 Route::get('/aPropos', [HomeController::class, 'aPropos'])->name('aPropos');
 
 
-Route::get('sport', [SportController::class,'index']) -> name('sport.index');
+Route::get('sports', [SportController::class,'index']) -> name('sports.index');
+Route::resource('sports', SportController::class);
