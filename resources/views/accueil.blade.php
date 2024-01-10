@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+<x-layout :titre="$titre">
+    <div>
+        <h1>{{$titre}}</h1>
+        <h2>Gestion des tâches</h2>
+        <p>Nous sommes {{$message}}</p>
+            <img class="img-land" src="{{Vite::asset('resources/images/alistar.png')}}" alt="Alistar meumeu" >
+    </div>
+</x-layout>
 
-</head>
-<body>
-<div>
-    <h1>Accueil</h1>
-    <h2>Gestion des sports</h2>
-    <img class="img-land" src="{{Vite::asset('resources/images/alistar.png')}}" alt="Alistar meumeu" >
-</div>
-</body>
-</html>
