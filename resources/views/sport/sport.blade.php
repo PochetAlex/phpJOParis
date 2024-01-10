@@ -1,4 +1,4 @@
-<html lang="fr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>Liste des sports</title>
     <style>
