@@ -34,8 +34,8 @@
                             <td>{{$sport->annee_ajout}}</td>
                             <td>{{$sport->nb_disciplines}}</td>
                             <td>{{$sport->nb_epreuves}}</td>
-                            <td>{{$sport->date_debut}}</td>
-                            <td>{{$sport->date_fin}}</td>
+                            <td>{{$sport->date_debut->format('D M Y')}}</td>
+                            <td>{{$sport->date_fin->format('D M Y')}}</td>
                         </tr>
                     @endforeach
                     </tbody>
