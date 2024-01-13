@@ -60,5 +60,15 @@
                 </div>
             </div>
         </form>
+        <h2>Choix d'une image</h2>
+        <form action="{{route('sports.upload', ['id' => $sport->id])}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <label for="doc">Image : </label>
+                <input type="file" name="image" id="doc">
+            </div>
+            <input type="submit" value="Télécharger" name="submit">
+        </form>
+
     </div>
 </x-layout>

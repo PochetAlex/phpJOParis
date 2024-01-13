@@ -24,3 +24,4 @@ Route::get('/aPropos', [HomeController::class, 'aPropos'])->name('aPropos');
 
 Route::get('sports', [SportController::class,'index']) -> name('sports.index');
 Route::resource('sports', SportController::class);
+Route::post('/sports/{id}/upload', [SportController::class, 'upload'])->name('sports.upload');

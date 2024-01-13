@@ -47,6 +47,7 @@
                             <td>{{$sport->nb_epreuves}}</td>
                             <td>{{$sport->date_debut->format('D M Y')}}</td>
                             <td>{{$sport->date_fin->format('D M Y')}}</td>
+                            <td><img class="image" src="{{url('storage/'.$sport->url_media)}}" alt="image tâche"></td>
                         </tr>
                     @endforeach
                     </tbody>
