@@ -11,6 +11,17 @@
             <button class="aDroite"><a href="{{route('sports.create')}}">Ajouter</a></button>
         </div>
         @if(!empty($sports))
+            <h4>Filtrage par nombres de disciplines</h4>
+            <form action="{{route('sports.index')}}" method="get">
+                <select name="cat">
+                    <option value="All" @if($cat == 'All') selected @endif>-- N'importe quel nombre de disciplines --</option>
+                    @foreach($nb_disciplines as $nb_discipline)
+                        <option value="{{$nb_discipline}}" @if($cat == $nb_discipline) selected @endif>{{$nb_discipline}}</option>
+                    @endforeach
+                </select>
+                <input type="submit" value="OK">
+            </form>
+
             <div>
                 <table>
                     <thead>

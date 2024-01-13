@@ -4,16 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Models\Sport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class SportController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() {
-        $sports = Sport::all(); // stocke dans la variable sports, les objets sport récupérés dans la table sports de la base de données.
-        return view('sports.index', ['sports' => $sports]);
+    public function index(Request $request) {
+        $cat = $request->input('cat', null);
+        $value = $request->cookie('cat', null);
+        if (!isset($cat)) {
+            if (!isset($value)) {
+                $sports = Sport::all();
+                $cat = 'All';
+                Cookie::expire('cat');
+            } else {
+                $sports = Sport::where('nb_disciplines', $value)->get();
+                $cat = $value;
+                Cookie::queue('cat', $cat, 10);            }
+        } else {
+            if ($cat == 'All') {
+                $sports = Sport::all();
+                Cookie::expire('cat');
+            } else {
+                $sports = Sport::where('nb_disciplines', $cat)->get();
+                Cookie::queue('cat', $cat, 10);
+            }
+        }
+        $nb_disciplines = Sport::distinct('nb_disciplines')->pluck('nb_disciplines');
+        return view('sports.index',
+            ['titre' => "Liste des sports", 'sports' => $sports, 'cat' => $cat, 'nb_disciplines' => $nb_disciplines]);
     }
+
     /**
      * Show the form for creating a new resource.
      */
