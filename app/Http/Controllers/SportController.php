@@ -161,6 +161,9 @@ class SportController extends Controller
     public function destroy(Request $request, string $id) {
         if ($request->delete == 'valide') {
             $sport = Sport::find($id);
+            if (isset($sport->url_media) && $sport->url_media != "images/alistar.png") {
+                Storage::delete($sport->url_media);
+            }
             $sport->delete();
             return redirect()->route('sports.index')
                 ->with('msg', 'Sport supprimée avec succès');
