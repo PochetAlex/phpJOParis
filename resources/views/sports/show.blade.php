@@ -10,8 +10,8 @@
         <div>{{$sport->nb_epreuves}}</div>
         <div>{{$sport->date_debut ? $sport->date_debut->format('d m Y') : ''}}</div>
         <div>{{$sport->date_fin ? $sport->date_fin->format('d m Y') : ''}}</div>
-        <div class="tache-des">
-            <img class="image" src="{{url('storage/'.$sport->url_media)}}" alt="image tâche">
+        <div class="sport-des">
+            <img class="image" src="{{Storage::url($sport->url_media)}}" alt="image sport">
         </div>
         <div class="sport-des">
             @if($action == 'delete')
