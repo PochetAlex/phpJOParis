@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('sports', function (Blueprint $table) {
             $table->string('url_media')->default('images/alistar.png');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->default('UTILISATEUR')->constrained()->onDelete('cascade');;
         });
     }
 

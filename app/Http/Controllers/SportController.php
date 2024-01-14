@@ -79,6 +79,7 @@ class SportController extends Controller
         $sport->nb_epreuves = $request->nb_epreuves;
         $sport->date_debut = $request->date_debut;
         $sport->date_fin = $request->date_fin;
+        $sport->user_id = $request->user()->id;
 
         $sport->save();
 
@@ -102,6 +103,7 @@ class SportController extends Controller
      */
     public function edit(string $id) {
         $sport = Sport::findOrFail($id);
+        $this->authorize('update', $sport); // Vérifie si l'utilisateur a le droit de modifier ce sport
         return view('sports.edit', ['titre' => "Modification d'un sport", 'sport' => $sport]);
     }
 
@@ -135,9 +137,6 @@ class SportController extends Controller
         // code exécuté uniquement si les données sont validées
         // sinon un message d'erreur est renvoyé vers l'utilisateur
 
-        // préparation de l'enregistrement à stocker dans la base de données
-
-        $sport = new Sport;
 
         $sport->nom = $request->nom;
         $sport->description = $request->description;
@@ -146,6 +145,7 @@ class SportController extends Controller
         $sport->nb_epreuves = $request->nb_epreuves;
         $sport->date_debut = $request->date_debut;
         $sport->date_fin = $request->date_fin;
+
 
         // insertion de l'enregistrement dans la base de données
         $sport->update();
@@ -159,19 +159,14 @@ class SportController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request, string $id) {
-        if ($request->delete == 'valide') {
-            $sport = Sport::find($id);
-            if (isset($sport->url_media) && $sport->url_media != "images/alistar.png") {
-                Storage::delete($sport->url_media);
-            }
-            $sport->delete();
-            return redirect()->route('sports.index')
-                ->with('msg', 'Sport supprimée avec succès');
-
-        } else {
-            return redirect()->route('sports.index')
-                ->with('msg', 'Suppression sport annulée');
+        $sport = Sport::find($id);
+        $this->authorize('delete', $sport); // Vérifie si l'utilisateur a le droit de supprimer ce sport
+        if (isset($sport->url_media) && $sport->url_media != "images/alistar.png") {
+            Storage::delete($sport->url_media);
         }
+        $sport->delete();
+        return redirect()->route('sports.index')
+            ->with('msg', 'Sport supprimé avec succès');
     }
 
     public function upload(Request $request, $id) {

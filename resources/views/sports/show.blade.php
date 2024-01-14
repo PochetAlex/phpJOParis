@@ -11,23 +11,23 @@
         <div>{{$sport->date_debut ? $sport->date_debut->format('d m Y') : ''}}</div>
         <div>{{$sport->date_fin ? $sport->date_fin->format('d m Y') : ''}}</div>
         <div class="sport-des">
-            <img class="image" src="{{Storage::url($sport->url_media)}}" alt="image sport">
+            <img class="image" src="{{url('storage/'.$sport->url_media)}}" alt="image sport">
         </div>
-        <div class="sport-des">
-            @if($action == 'delete')
-                <form action="{{route('sports.destroy',$sport->id)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <div class="text-center">
-                        <button type="submit" name="delete" value="valide">Valide</button>
-                        <button type="submit" name="delete" value="annule">Annule</button>
-                    </div>
-                </form>
-            @else
-                <div>
-                    <a href="{{route('sports.index')}}">Retour à la liste</a>
-                </div>
-            @endif
+        <!-- Bouton de modification -->
+        <div>
+            <a href="{{route('sports.edit', ['sport' => $sport->id])}}">Modifier</a>
         </div>
+        <div>
+            <a href="{{route('sports.index')}}">Retour à la liste</a>
+        </div>
+        <!-- Bouton de suppression -->
+        <div>
+            <form action="{{ route('sports.destroy', ['sport' => $sport->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sport?')">Supprimer</button>
+            </form>
+        </div>
+
     </div>
 </x-layout>

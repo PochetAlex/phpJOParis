@@ -22,5 +22,24 @@ class UsersSeeder extends Seeder
         $users->each(function ($user) {
             Sport::factory(5)->create(['user_id' => $user->id]);
         });
+
+        User::factory([
+            'name' => "Alistar Meumeu",
+            'email' => "alistar.meumeu@domain.fr",
+            'email_verified_at' => now(),
+            'password' => Hash::make('nePasPartager'),
+            'remember_token' => Str::random(10),
+            'role' => 'ADMIN',
+        ])->create();
+
+        User::factory([
+            'name' => "Meumeu Alistar",
+            'email' => "meumeu.alistarm@domain.fr",
+            'email_verified_at' => now(),
+            'password' => Hash::make('nePasPartager'),
+            'remember_token' => Str::random(10),
+            'role' => 'UTILISATEUR',
+        ])->create();
+
     }
 }

@@ -23,9 +23,14 @@ Route::get('/aPropos', [HomeController::class, 'aPropos'])->name('aPropos');
 
 
 Route::get('sports', [SportController::class,'index']) -> name('sports.index');
-Route::resource('sports', SportController::class);
 Route::post('/sports/{id}/upload', [SportController::class, 'upload'])->name('sports.upload');
 
 Route::get('/home', function () {
     return view('dashboard', ['titre' => 'Dashboard']);
 })->middleware(['auth'])->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+    // Vos routes nécessitant une connexion d'utilisateur ici
+    Route::resource('sports', SportController::class);
+    Route::delete('/sports/{sport}', [SportController::class, 'destroy'])->name('sports.destroy');
+});

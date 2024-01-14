@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Sport::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->role === 'ADMIN';
+    }
 }

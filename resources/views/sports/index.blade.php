@@ -35,6 +35,7 @@
                         <td>Date de debut</td>
                         <td>Date de fin</td>
                         <td>Nom de l'utilisateur</td>
+                        <td>Détails</td>
                         <td>Image du sport</td>
                     </tr>
                     </thead>
@@ -50,7 +51,10 @@
                             <td>{{$sport->date_debut->format('D M Y')}}</td>
                             <td>{{$sport->date_fin->format('D M Y')}}</td>
                             <td>{{$sport->user->name}}</td>
-                            <td><img class="image" src="{{url('storage/'.$sport->url_media)}}" alt="image tâche"></td>
+                            <td>
+                                <a href="{{ route('sports.show', ['sport' => $sport]) }}">Détails</a>
+                            </td>
+                            <td><img class="image" src="{{url('storage/'.$sport->url_media)}}" alt="image sport"></td>
                         </tr>
                     @endforeach
                     </tbody>
