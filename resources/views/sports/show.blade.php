@@ -14,19 +14,24 @@
             <img class="image" src="{{url('storage/'.$sport->url_media)}}" alt="image sport">
         </div>
         <!-- Bouton de modification -->
-        <div>
-            <a href="{{route('sports.edit', ['sport' => $sport->id])}}">Modifier</a>
-        </div>
+        @if(auth()->user()->isAdmin() || auth()->user()->id === $sport->user_id)
+            <div>
+                <a href="{{route('sports.edit', ['sport' => $sport->id])}}">Modifier</a>
+            </div>
+        @endif
+
+        <!-- Bouton de suppression -->
+        @if(auth()->user()->isAdmin() || auth()->user()->id === $sport->user_id)
+            <div>
+                <form action="{{ route('sports.destroy', ['sport' => $sport->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sport?')">Supprimer</button>
+                </form>
+            </div>
+        @endif
         <div>
             <a href="{{route('sports.index')}}">Retour à la liste</a>
-        </div>
-        <!-- Bouton de suppression -->
-        <div>
-            <form action="{{ route('sports.destroy', ['sport' => $sport->id]) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sport?')">Supprimer</button>
-            </form>
         </div>
 
     </div>
