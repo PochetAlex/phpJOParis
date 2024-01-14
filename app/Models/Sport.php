@@ -19,5 +19,9 @@ class Sport extends Model
         return Storage::url($this->url_media);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

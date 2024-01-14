@@ -34,6 +34,8 @@
                         <td>Nombre d'épreuves</td>
                         <td>Date de debut</td>
                         <td>Date de fin</td>
+                        <td>Nom de l'utilisateur</td>
+                        <td>Image du sport</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -47,6 +49,7 @@
                             <td>{{$sport->nb_epreuves}}</td>
                             <td>{{$sport->date_debut->format('D M Y')}}</td>
                             <td>{{$sport->date_fin->format('D M Y')}}</td>
+                            <td>{{$sport->user->name}}</td>
                             <td><img class="image" src="{{url('storage/'.$sport->url_media)}}" alt="image tâche"></td>
                         </tr>
                     @endforeach

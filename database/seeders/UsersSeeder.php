@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Sport;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,14 +16,11 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory([
-            'name' => "Alistar meumeu",
-            'email' => "alistar.meumeu@domain.fr",
-            'email_verified_at' => now(),
-            'password' => Hash::make('nePasPartager'),
-            'remember_token' => Str::random(10),
-        ])->create();
-        User::factory(3)->create();
+        $users = User::factory(3)->create();
 
+        // Créer des sports associés à chaque utilisateur
+        $users->each(function ($user) {
+            Sport::factory(5)->create(['user_id' => $user->id]);
+        });
     }
 }
